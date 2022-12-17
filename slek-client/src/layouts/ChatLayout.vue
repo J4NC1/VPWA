@@ -1,5 +1,6 @@
 <template>
-    <div class="WAL position-relative bg-grey-4" :style="{ height: $q.screen.height + 'px' }">
+    <div class="WAL position-relative bg-grey-4" :style="{ height: $q.screen.height + 'px' }"
+    >
       <q-layout view="lHh Lpr lFf" class="WAL__layout shadow-3" container>
         <q-header elevated>
           <q-toolbar class="bg-grey-3 text-black">
@@ -8,7 +9,8 @@
               flat
               icon="keyboard_arrow_left"
               class="WAL__drawer-open q-mr-sm"
-              @click="leftDrawerOpen = !leftDrawerOpen"/>
+              @click="leftDrawerOpen = !leftDrawerOpen"
+              />
             <q-btn round flat>
               <q-avatar color="primary" text-color="white">G</q-avatar>
             </q-btn>
@@ -75,8 +77,8 @@
         </q-page-container>
         <q-footer>
           <q-toolbar class="bg-grey-3 text-black row">
-            <q-input v-model="message" :disable="loading" @keydown.enter.prevent="send" rounded outlined dense class="WAL__field col-grow q-mr-sm" bg-color="white" placeholder="Type a message" />
-            <q-btn :disable="loading" @click="send" round flat icon="send" />
+            <q-input v-model="message" :disable="loading" @keydown.enter.prevent="send" rounded outlined dense class="WAL__field col-grow q-mr-sm" bg-color="light-blue-1" placeholder="Type a message" />
+            <q-btn :disable="loading" @click="send" round flat icon="send" color="black"/>
           </q-toolbar>
         </q-footer>
       </q-layout>
