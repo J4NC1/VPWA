@@ -8,6 +8,7 @@ export interface RegisterData {
   email: string
   password: string
   passwordConfirmation: string
+  nickName: string
 }
 export interface LoginCredentials {
   email: string
@@ -17,6 +18,7 @@ export interface LoginCredentials {
 export interface User {
   id: number
   email: string
-  createdAt: string,
+  createdAt: string
   updatedAt: string
+  nickName:string
 }
