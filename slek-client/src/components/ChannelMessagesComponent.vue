@@ -1,7 +1,10 @@
 <template>
     <q-scroll-area ref="area" style="width: 100%; height: calc(100vh - 150px)">
-      <div style="width: 100%; max-width: 400px; margin: 0 auto;">
+      <div style="width: 100%; max-width: 600px; margin: 0 auto;">
+        <button @click="$emit('loadMore')" class="top vertical-middle">
+        Load more messages</button>
         <q-chat-message v-for="message in messages"
+          :bg-color="upgradeView(message)"
           :key="message.id"
           :name="message.author.email"
           :text="[message.content]"
@@ -34,7 +37,7 @@ export default defineComponent({
   },
   computed: {
     currentUser () {
-      return this.$store.state.auth.user?.id
+      return this.$store.state.auth.user
     }
   },
   methods: {
@@ -43,7 +46,16 @@ export default defineComponent({
       area && area.setScrollPercentage('vertical', 1.1)
     },
     isMine (message: SerializedMessage): boolean {
-      return message.author.id === this.currentUser
+      console.log(this.currentUser)
+      return message.author.id === this.currentUser?.id
+    },
+    upgradeView (message: SerializedMessage): string {
+      if (message.content.includes('@' + this.currentUser?.id)) {
+        return 'red'
+      } else if (this.isMine(message)) {
+        return 'light-green'
+      }
+      return 'grey'
     }
   }
 })
