@@ -28,6 +28,50 @@
             <q-avatar class="cursor-pointer">
               <img src="https://cdn.quasar.dev/logo-v2/svg/logo.svg" />
             </q-avatar>
+            <!--buttton online-->
+            <div class="q-pa-md">
+              <q-btn-dropdown
+              class="glossy"
+              color="purple"
+              label="Account"
+            >
+              <div class="row no-wrap q-pa-md">
+                <div class="column">
+                  <div class="text-h6 q-mb-md">Settings</div>
+                  <div class="q-pa-md">
+                    <q-option-group
+                      :options="options"
+                      type="radio"
+                      v-model="group"
+                    />
+                  </div>
+                  <!--
+                  <q-toggle v-model="statusForm.online" label="Online" />
+                  <q-toggle v-model="statusForm.DND" label="DND" />
+                  <q-toggle v-model="statusForm.offline" label="Offline" />
+                  -->
+                </div>
+                <q-separator vertical inset class="q-mx-lg" />
+
+                <div class="column items-center">
+                  <q-avatar size="72px">
+                    <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+                  </q-avatar>
+
+                  <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>
+
+                  <q-btn
+                  color="primary"
+                  label="Logout"
+                  push
+                  size="sm"
+                  v-close-popup
+                  />
+                </div>
+              </div>
+              </q-btn-dropdown>
+            </div>
+            <!--buttton online-->
             <q-space />
             <q-btn round flat icon="more_vert">
               <q-menu auto-close :offset="[110, 8]">
@@ -86,13 +130,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default defineComponent({
   name: 'ChatLayout',
+  setup () {
+    return {
+      group: ref(null),
+
+      options: [
+        { label: 'Battery too low', value: 'bat' },
+        { label: 'Friend request', value: 'friend', color: 'green' },
+        { label: 'Picture uploaded', value: 'upload', color: 'red' }
+      ]
+    }
+  },
   data () {
     return {
+      statusForm: { online: '', DND: '', offline: '' },
       leftDrawerOpen: false,
       message: '',
       loading: false
