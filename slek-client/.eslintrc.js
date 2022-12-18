@@ -10,7 +10,7 @@ module.exports = {
   // `parser: 'vue-eslint-parser'` is already included with any 'plugin:vue/**' config and should be omitted
   parserOptions: {
     parser: require.resolve('@typescript-eslint/parser'),
-    extraFileExtensions: [ '.vue' ]
+    extraFileExtensions: ['.vue']
   },
 
   env: {
@@ -37,7 +37,6 @@ module.exports = {
     // 'plugin:vue/vue3-recommended', // Priority C: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
 
     'standard'
-    
   ],
 
   plugins: [
@@ -47,7 +46,6 @@ module.exports = {
     // https://eslint.vuejs.org/user-guide/#why-doesn-t-it-work-on-vue-files
     // required to lint *.vue files
     'vue'
-    
   ],
 
   globals: {
@@ -60,12 +58,11 @@ module.exports = {
     __QUASAR_SSR_PWA__: 'readonly',
     process: 'readonly',
     Capacitor: 'readonly',
-    chrome: 'readonly',
+    chrome: 'readonly'
   },
 
   // add your custom rules here
   rules: {
-    
     // allow async-await
     'generator-star-spacing': 'off',
     // allow paren-less arrow functions
@@ -85,7 +82,6 @@ module.exports = {
     // The core 'import/named' rules
     // does not work with type definitions
     'import/named': 'off',
-    
     'prefer-promise-reject-errors': 'off',
 
     quotes: ['warn', 'single', { avoidEscape: true }],

@@ -5,10 +5,10 @@ export interface ApiToken {
   expires_in?: number
 }
 export interface RegisterData {
+  nickname: string
   email: string
   password: string
   passwordConfirmation: string
-  nickName: string
 }
 export interface LoginCredentials {
   email: string
@@ -17,8 +17,8 @@ export interface LoginCredentials {
 }
 export interface User {
   id: number
+  nickname:string
   email: string
   createdAt: string
   updatedAt: string
-  nickName:string
 }
