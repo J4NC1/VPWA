@@ -9,12 +9,20 @@
         <q-form ref="form" class="q-gutter-md">
           <q-card-section>
             <q-input
+              name="nickname"
+              id="nickname"
+              v-model="form.nickname"
+              maxlength="6"
+              type="text"
+              label="Nickname"
+              autofocus
+            />
+            <q-input
               name="email"
               id="email"
               v-model.trim="form.email"
               type="email"
               label="Email"
-              autofocus
             />
             <q-input
               id="password"
@@ -70,7 +78,7 @@ export default defineComponent({
   name: 'RegisterPage',
   data () {
     return {
-      form: { email: '', password: '', passwordConfirmation: '' },
+      form: { nickname: '', email: '', password: '', passwordConfirmation: '' },
       showPassword: false
     }
   },

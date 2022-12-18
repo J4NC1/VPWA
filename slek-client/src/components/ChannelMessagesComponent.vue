@@ -6,7 +6,7 @@
         <q-chat-message v-for="message in messages"
           :bg-color="upgradeView(message)"
           :key="message.id"
-          :name="message.author.email"
+          :name="message.author.nickname"
           :text="[message.content]"
           :stamp="message.createdAt"
           :sent="isMine(message)"
@@ -50,7 +50,7 @@ export default defineComponent({
       return message.author.id === this.currentUser?.id
     },
     upgradeView (message: SerializedMessage): string {
-      if (message.content.includes('@' + this.currentUser?.nickName)) {
+      if (message.content.includes('@' + this.currentUser?.nickname)) {
         return 'black'
       } else if (this.isMine(message)) {
         return 'light-blue-1'
