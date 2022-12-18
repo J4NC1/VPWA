@@ -46,30 +46,32 @@
               @click="leftDrawerOpen = !leftDrawerOpen"
             />
           </q-toolbar>
-          <q-scroll-area style="height: calc(100% - 100px)">
-            <q-list>
-              <q-item
-                v-for="(channel, index) in channels"
-                :key="index"
-                clickable
-                v-ripple
-                @click="setActiveChannel(channel)">
-                <q-item-section>
-                  <q-item-label lines="1">
-                    {{ channel }}
-                  </q-item-label>
-                  <q-item-label class="conversation__summary" caption>
-                    {{ lastMessageOf(channel)?.content || '' }}
-                  </q-item-label>
-                </q-item-section>
-                <q-item-section side>
-                  <!--q-item-label caption>
-                    {{ channel }}
-                  </q-item-label-->
-                  <q-icon name="keyboard_arrow_down" />
-                </q-item-section>
-              </q-item>
-            </q-list>
+          <q-scroll-area style="height: calc(100% - 100px)" name="scrolling">
+            <q-infinite-scroll @load="$data.message" :offset="250">
+              <q-list>
+                <q-item
+                  v-for="(channel, index) in channels"
+                  :key="index"
+                  clickable
+                  v-ripple
+                  @click="setActiveChannel(channel)">
+                  <q-item-section>
+                    <q-item-label lines="1">
+                      {{ channel }}
+                    </q-item-label>
+                    <q-item-label class="conversation__summary" caption>
+                      {{ lastMessageOf(channel)?.content || '' }}
+                    </q-item-label>
+                  </q-item-section>
+                  <q-item-section side>
+                    <!--q-item-label caption>
+                      {{ channel }}
+                    </q-item-label-->
+                    <q-icon name="keyboard_arrow_down" />
+                  </q-item-section>
+                </q-item>
+              </q-list>
+              </q-infinite-scroll>
           </q-scroll-area>
         </q-drawer>
         <q-page-container class="bg-grey-2">
@@ -86,7 +88,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { setupMaster } from 'cluster'
+import { ref, defineComponent } from 'vue'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default defineComponent({
@@ -121,6 +124,15 @@ export default defineComponent({
     ...mapActions('channels', ['addMessage'])
   }
 })
+
+const items = ref([{}, {}, {}, {}, {}, {}, {}])
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const onLoad = (index: unknown, done: any) => {
+  setTimeout(() => {
+    items.value.push({}, {}, {}, {}, {}, {}, {})
+    done()
+  }, 500)
+}
 </script>
 
 <style lang="sass">
