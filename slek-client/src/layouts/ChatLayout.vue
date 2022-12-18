@@ -32,18 +32,21 @@
             <div class="q-pa-md">
               <q-btn-dropdown
               class="glossy"
-              color="teal-13"
+              color="{{ status }}"
               label="Account"
-            >
+              >
               <div class="row no-wrap q-pa-md">
                 <div class="column">
                   <div class="text-h6 q-mb-md">Settings</div>
                   <div class="q-pa-md">
-                    <q-option-group
+                    <q-radio name="statusOnline" v-model="status" val="green" label="Online" color="green"/>
+                    <q-radio name="statusDND" v-model="status" val="orange" label="DND" color="orange"/>
+                    <q-radio name="statusOffline" v-model="status" val="red" label="Offline" color="red"/>
+                    <!-- <q-option-group
                       :options="options"
                       type="radio"
                       v-model="group"
-                    />
+                    /> -->
                   </div>
                 </div>
                 <q-separator vertical inset class="q-mx-lg" />
@@ -53,7 +56,7 @@
                     <img src="https://cdn.quasar.dev/img/boy-avatar.png">
                   </q-avatar>
 
-                  <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>
+                  <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>    <!--dorobiť nahravanie mena-->
 
                   <q-btn
                   color="primary"
@@ -132,14 +135,16 @@ export default defineComponent({
   name: 'ChatLayout',
   setup () {
     return {
-      group: ref(null),
+      status: ref('online')
+    }
+    /* group: ref(null),
 
       options: [
         { label: 'Online', value: 'online', color: 'green' },
         { label: 'DND', value: 'dnd', color: 'orange' },
         { label: 'Offline', value: 'offline', color: 'red' }
       ]
-    }
+    } */
   },
   data () {
     return {
@@ -169,7 +174,16 @@ export default defineComponent({
       setActiveChannel: 'SET_ACTIVE'
     }),
     ...mapActions('auth', ['logout']),
-    ...mapActions('channels', ['addMessage'])
+    ...mapActions('channels', ['addMessage']),
+    colorPicker (status: string) {
+      if (status === 'Online') {
+        return 'green'
+      } else if (status === 'DND') {
+        return 'Orange'
+      } else {
+        return 'Red'
+      }
+    }
   }
 })
 </script>
