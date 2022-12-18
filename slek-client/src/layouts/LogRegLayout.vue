@@ -8,10 +8,6 @@
 
 <script>
 export default {
-  methods: {
-    login () {
-      this.$router.push('/auth/login')
-    }
-  }
+
 }
 </script>
