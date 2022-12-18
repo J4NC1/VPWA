@@ -32,7 +32,7 @@
             <div class="q-pa-md">
               <q-btn-dropdown
               class="glossy"
-              color="purple"
+              color="teal-13"
               label="Account"
             >
               <div class="row no-wrap q-pa-md">
@@ -45,11 +45,6 @@
                       v-model="group"
                     />
                   </div>
-                  <!--
-                  <q-toggle v-model="statusForm.online" label="Online" />
-                  <q-toggle v-model="statusForm.DND" label="DND" />
-                  <q-toggle v-model="statusForm.offline" label="Offline" />
-                  -->
                 </div>
                 <q-separator vertical inset class="q-mx-lg" />
 
@@ -140,9 +135,9 @@ export default defineComponent({
       group: ref(null),
 
       options: [
-        { label: 'Battery too low', value: 'bat' },
-        { label: 'Friend request', value: 'friend', color: 'green' },
-        { label: 'Picture uploaded', value: 'upload', color: 'red' }
+        { label: 'Online', value: 'online', color: 'green' },
+        { label: 'DND', value: 'dnd', color: 'orange' },
+        { label: 'Offline', value: 'offline', color: 'red' }
       ]
     }
   },
