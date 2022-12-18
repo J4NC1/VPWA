@@ -27,11 +27,21 @@ export default class RegisterUserValidator {
     email: schema.string({}, [
       rules.email(),
       rules.unique({ table: 'users', column: 'email' })
+
+
     ]),
     password: schema.string({}, [
       rules.minLength(8),
       rules.confirmed('passwordConfirmation')
-    ])
+    ]),
+    nickname: schema.string({}, [
+      rules.maxLength(8),
+      //rules.confirmed('passwordConfirmation')
+    ]),
+    remember_me: schema.string({}),
+    created_at: schema.date({}),
+    updated_at: schema.date({})
+
   })
 
   /**
@@ -47,5 +57,5 @@ export default class RegisterUserValidator {
    */
   //public messages: CustomMessages = {}
   //totototototo som komentoval a nebolo to komentovaneeeeee:::::!!!!!!!!!!!!!!!!
-  
+
 }
