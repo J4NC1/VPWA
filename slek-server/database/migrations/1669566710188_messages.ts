@@ -3,14 +3,17 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class extends BaseSchema {
   protected tableName = 'messages'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
       table.integer('created_by').unsigned().references('id').inTable('users').onDelete('CASCADE')
-      
-      table.integer('channel_id').unsigned().references('id').inTable('channels').onDelete('CASCADE')
-      
+      table
+        .integer('channel_id')
+        .unsigned()
+        .references('id')
+        .inTable('channels')
+        .onDelete('CASCADE')
       table.text('content')
 
       /**
@@ -21,7 +24,7 @@ export default class extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }

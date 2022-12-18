@@ -18,8 +18,5 @@ export default class Channel extends BaseModel {
   @hasMany(() => Message, {
     foreignKey: 'channelId',
   })
-
   public messages: HasMany<typeof Message>
-
-  
 }

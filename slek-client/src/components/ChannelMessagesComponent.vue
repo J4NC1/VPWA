@@ -51,7 +51,7 @@ export default defineComponent({
     },
     upgradeView (message: SerializedMessage): string {
       if (message.content.includes('@' + this.currentUser?.nickname)) {
-        return 'black'
+        return 'light-blue-7'
       } else if (this.isMine(message)) {
         return 'light-blue-1'
       }

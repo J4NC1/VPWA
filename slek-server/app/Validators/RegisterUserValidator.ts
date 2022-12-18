@@ -24,26 +24,13 @@ export default class RegisterUserValidator {
    *    ```
    */
   public schema = schema.create({
-    email: schema.string({}, [
-      rules.email(),
-      rules.unique({ table: 'users', column: 'email' })
-
-
-    ]),
-    password: schema.string({}, [
-      rules.minLength(8),
-      rules.confirmed('passwordConfirmation')
-    ]),
+    email: schema.string({}, [rules.email(), rules.unique({ table: 'users', column: 'email' })]),
+    password: schema.string({}, [rules.minLength(8), rules.confirmed('passwordConfirmation')]),
     nickname: schema.string({}, [
-      rules.maxLength(8),
-      //rules.confirmed('passwordConfirmation')
+      rules.maxLength(6),
+      rules.unique({ table: 'users', column: 'nickname' }),
     ]),
-    remember_me: schema.string({}),
-    created_at: schema.date({}),
-    updated_at: schema.date({})
-
   })
-
   /**
    * Custom messages for validation failures. You can make use of dot notation `(.)`
    * for targeting nested fields and array expressions `(*)` for targeting all
@@ -57,5 +44,4 @@ export default class RegisterUserValidator {
    */
   //public messages: CustomMessages = {}
   //totototototo som komentoval a nebolo to komentovaneeeeee:::::!!!!!!!!!!!!!!!!
-
 }

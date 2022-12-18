@@ -4,7 +4,7 @@ import User from 'App/Models/User'
 import RegisterUserValidator from 'App/Validators/RegisterUserValidator'
 
 export default class AuthController {
-  async register({ request }: HttpContextContract) {
+  public async register({ request }: HttpContextContract) {
     // if invalid, exception
     const data = await request.validate(RegisterUserValidator)
     console.log(data)
@@ -16,18 +16,18 @@ export default class AuthController {
     return user
   }
 
-  async login({ auth, request }: HttpContextContract) {
+  public async login({ auth, request }: HttpContextContract) {
     const email = request.input('email')
     const password = request.input('password')
 
     return auth.use('api').attempt(email, password)
   }
 
-  async logout({ auth }: HttpContextContract) {
+  public async logout({ auth }: HttpContextContract) {
     return auth.use('api').logout()
   }
 
-  async me({ auth }: HttpContextContract) {
+  public async me({ auth }: HttpContextContract) {
     await auth.user!.load('channels')
     return auth.user
   }
