@@ -1,8 +1,10 @@
 <template>
     <q-scroll-area ref="area" style="width: 100%; height: calc(100vh - 150px)">
       <div style="width: 100%; max-width: 600px; margin: 0 auto;">
+        <!--
         <button @click="$emit('loadMore')" class="top vertical">
         Load messages</button>
+        -->
         <q-chat-message v-for="message in messages"
           :bg-color="upgradeView(message)"
           :key="message.id"
@@ -50,8 +52,9 @@ export default defineComponent({
       return message.author.id === this.currentUser?.id
     },
     upgradeView (message: SerializedMessage): string {
-      if (message.content.includes('@' + this.currentUser?.nickName)) {
-        return 'black'
+      console.log(this.currentUser?.id)
+      if (message.content.includes('@' + this.currentUser?.id)) {
+        return 'green'
       } else if (this.isMine(message)) {
         return 'light-blue-1'
       }

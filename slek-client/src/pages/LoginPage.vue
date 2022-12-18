@@ -72,7 +72,7 @@ export default defineComponent({
   },
   methods: {
     onSubmit () {
-      this.$store.dispatch('auth/login', this.credentials).then(() => this.$router.push(this.redirectTo))
+      this.$store.dispatch('auth/login', this.credentials).then(() => this.$router.push(this.redirectTo))// predtym tam bolo this.redirectTo
     }
   }
 })
